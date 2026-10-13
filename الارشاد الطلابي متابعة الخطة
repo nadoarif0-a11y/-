@@ -1,0 +1,76 @@
+أكيد، ليظهر **شعار وزارة التعليم في المنتصف بين بيانات المدرسة وبيانات التوجيه الطلابي**:
+
+### 1. احفظي الصورة
+احفظي الشعار المرفق باسم `ministry-logo.png` في المجلد نفسه الذي يحتوي على ملف `index.html`.
+
+### 2. استبدلي مربع الشعار السابق
+استبدلي:
+```html
+<div class="logo" id="logoBox">
+  الهوية<br>المدرسية
+</div>
+```
+
+بهذا الكود:
+```html
+<div class="logo" id="logoBox">
+  <img
+    src="ministry-logo.png"
+    alt="شعار وزارة التعليم"
+  >
+</div>
+```
+
+### 3. أضيفي هذا التنسيق في نهاية `<style>`
+```css
+/* تثبيت الشعار في منتصف الهوية */
+.identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.identity > .logo {
+  width: 170px;
+  height: auto;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.identity > .logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  .identity {
+    grid-template-columns: minmax(0, 1fr) 110px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .identity > .logo {
+    width: 110px;
+  }
+}
+
+@media print {
+  .identity {
+    grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr);
+  }
+
+  .identity > .logo {
+    width: 140px;
+  }
+}
+```
+
+سيظهر الشعار **في منتصف رأس الصفحة، وكذلك عند الطباعة أو الحفظ بصيغة PDF**.
